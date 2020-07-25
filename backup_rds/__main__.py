@@ -1,8 +1,14 @@
 import argparse
 from backup_rds.functions import ask_database_values
 from backup_rds.RDS import RDS
+from backup_rds.MySqlClient import MySqlClient
 
 def main():
+
+    mysql_client = MySqlClient()
+    if not mysql_client.is_can_access_mysql_local():
+        print("I could not access the local mysql client. May it is not installed in the system.")
+        exit()
 
     parser = argparse.ArgumentParser()
 
