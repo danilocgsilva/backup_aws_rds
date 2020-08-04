@@ -9,6 +9,9 @@ def ensure_database_values_asking(rds: RDS):
     if not rds.is_have_database_name():
         rds.set_database_name(input("What is the database name? "))
 
+    if not rds.is_have_database_user():
+        rds.set_database_user(input("What is the database user? "))
+
     rds.set_password(getpass("Please, type here the database password: "))
 
     return rds

@@ -19,6 +19,10 @@ class test_RDS(unittest.TestCase):
         self.rds.set_rds_name("my_rds_name_instance")
         self.assertTrue(self.rds.is_have_rds_name())
 
+    def test_is_have_database_user(self):
+        self.rds.set_database_user("rot")
+        self.assertTrue(self.rds.is_have_database_user())
+
     def test_is_have_rds_name_false(self):
         self.assertFalse(self.rds.is_have_rds_name())
 
@@ -28,5 +32,9 @@ class test_RDS(unittest.TestCase):
 
     def test_set_rds_name_fluent_interface(self):
         my_rds = self.rds.set_rds_name("rds_name_instance")
+        self.assertTrue(isinstance(my_rds, RDS))
+
+    def test_set_database_user_fluent_interface(self):
+        my_rds = self.rds.set_database_user("root")
         self.assertTrue(isinstance(my_rds, RDS))
 
