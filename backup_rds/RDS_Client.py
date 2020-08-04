@@ -1,3 +1,5 @@
+import boto3
+
 class RDS_Client:
 
     def __init__(self):
@@ -12,6 +14,12 @@ class RDS_Client:
         self.instance_name = instance_name
         return self
 
-    def assing(self):
+    def communicate_assign_sg(self):
+        client = boto3.client('rds')
+        sg_list = self.get_sg_list(client)
 
+    def get_sg_list(self, client):
+        instances = client.describe_db_instances(Filters=[
+            {'Name': 'db-instance-id', 'Values': [self.instance_name]}
+        ])
 

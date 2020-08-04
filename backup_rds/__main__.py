@@ -15,8 +15,7 @@ def main():
     rds = RDS().set_database_name(args.database).set_rds_name(args.name)
     rds = ensure_database_values_asking(rds)
     group_ip = create_security_group_with_external_ip()
-    RDS_Client().get_instance_name().assing_sg(group_ip)
-
+    RDS_Client().set_instance_name(rds.get_rds_name()).set_sgid(group_ip).communicate_assign_sg()
 
 
 def check_client_locally_installed(mysql_client: MySqlClient):
